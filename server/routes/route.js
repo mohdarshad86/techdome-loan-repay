@@ -14,9 +14,9 @@ router.post('/api/user/sendOTP', otp.sendOTP)
 router.post('/api/user/verifyOTP', otp.verifyOTP)
 
 //loan
-router.post('/api/loan/create', loanController.createLoan)
-router.put('/api/loan/approve/:userId', loanController.approveLoan)
-router.post('/api/loan/repay/:userId', authorise.auth, loanController.addRepayment)
+router.post('/api/loan/create', authorise.auth, loanController.createLoan)
+router.put('/api/loan/approve/:loanId', authorise.auth, loanController.approveLoan)
+router.post('/api/loan/repay/:loanId', authorise.auth, loanController.addRepayment)
 router.get('/api/loan/user', authorise.auth, loanController.getLoansByUser)
 
 router.all('*', (req, res) => {

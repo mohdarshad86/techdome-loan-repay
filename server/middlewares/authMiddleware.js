@@ -12,7 +12,7 @@ const auth = async (req, res, next) => {
             // console.log(token);
 
             const decoded = jwt.verify(token, process.env.SECRET_KEY)
-            // console.log(decoded);
+            console.log(decoded);
             req.user = await userModel.findById(decoded.id).select('-password')
             // console.log(req.user);
             next()

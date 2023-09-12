@@ -1,11 +1,9 @@
-const Loan = require('../models/loanModel'); // Import the Loan model
+const loanModel = require('../models/loanModel'); // Import the Loan model
 
 const createLoan = async (req, res) => {
     try {
-        console.log(req.user);
-        const { userId } = req.user;
+        const userId = req.user._id;
         const { amountRequired, loanTerm } = req.body;
-
 
         const weeklyRepayment = amountRequired / loanTerm;
         const scheduledRepayments = [];
@@ -22,7 +20,7 @@ const createLoan = async (req, res) => {
             });
         }
 
-        const loan = new Loan({
+        const loan = new loanModel({
             userId,
             amountRequired,
             loanTerm,
@@ -42,7 +40,7 @@ const getLoansByUser = async (req, res) => {
     try {
         const userId = req.user._id;
         console.log('api', req.user);
-        const loans = await Loan.find({});
+        const loans = await loanModel.find({ userId: userId });
 
         return res.status(200).json(loans);
     } catch (error) {
@@ -55,15 +53,13 @@ const approveLoan = async (req, res) => {
     try {
         console.log(req.user);
 
-        const isAdmin = req.user.role;
-
         if (req.user.role != "Admin") {
             return res.status(403).json({ message: 'Permission denied' });
         }
 
         const loanId = req.params.loanId;
 
-        const loan = await Loan.findById(loanId);
+        const loan = await loanModel.findById(loanId);
 
         if (!loan) {
             return res.status(404).json({ message: 'Loan not found' });
@@ -82,15 +78,16 @@ const approveLoan = async (req, res) => {
 
 const addRepayment = async (req, res) => {
     try {
-        const { userId } = req.user;
         const loanId = req.params.loanId;
         const { amount } = req.body;
-        console.log(amount);
 
-        const loan = await Loan.findById(loanId);
+        const loan = await loanModel.findById(loanId);
 
         if (!loan) {
             return res.status(404).json({ message: 'Loan not found' });
+        }
+        if (loan.status==='PAID') {
+            return res.status(400).json({ message: 'Loan Already Paid' });
         }
 
         const pendingRepayment = loan.scheduledRepayments.find(
@@ -106,6 +103,14 @@ const addRepayment = async (req, res) => {
         }
 
         pendingRepayment.status = 'PAID';
+
+        const remainingPendingRepayments = loan.scheduledRepayments.filter(
+            (repayment) => repayment.status === 'PENDING'
+        );
+
+        if (remainingPendingRepayments.length === 0) {
+            loan.status = 'PAID';
+        }
 
         await loan.save();
 
