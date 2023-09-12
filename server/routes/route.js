@@ -21,7 +21,7 @@ router.get('/api/loan/user', authorise.auth, loanController.getLoansByUser)
 router.get('/api/loan/allUser', authorise.auth, loanController.getAllLoans)
 
 router.all('*', (req, res) => {
-    return res.status(400).send('Invalid URL')
+    return res.status(400).send({ message: 'Invalid URL' })
 })
 
 module.exports = router

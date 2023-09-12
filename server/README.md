@@ -1,4 +1,6 @@
-1. Clone the repository:
+# Clone the repository:
+
+Clone the repository using command
 
 ```git clone https://github.com/mohdarshad86/techdome-loan-repay.git```
 
@@ -26,14 +28,19 @@ To run this backend as seperate on your local development environment, follow th
 
 1. You have already cloned the repository now navigate to the 'server' directory using the ```cd server``` command.
 
-2. Install dependencies:
-```npm install```.
+2. Install dependencies: run command
+
+     ```npm install```
+
 It will install all the necessary dependencies
 
-3. Configure environment variables by creating a .env file and adding the required configuration.
+3. Configure environment variables by creating a ```.env``` file and adding the required configuration.
+It consist ```MONGO_URI```, ```PORT``` and ```SECRET_KEY```.
 
-4. Start the server:
-```npm start```
+4. Start the server: run command
+
+    ```npm start```
+
 The server will be running on http://localhost:3001 by default.
 
 ## API Endpoints
@@ -53,11 +60,13 @@ The backend server provides the following API endpoints:
 ### Loan Management
 
 - POST /api/loan/create: Create a new loan (requires authentication).
-- PUT /api/loan/approve/:loanId: Approve a loan by loan ID (requires authentication).
+- PUT /api/loan/approve/:loanId: Admin can Approve a loan by loan ID (requires authentication).
 - POST /api/loan/repay/:loanId: Add a repayment for a loan by loan ID (requires authentication).
 - GET /api/loan/user: Get loans for the authenticated user.
-- GET /api/loan/allUser: Get all loans for all users (requires authentication).
-- Invalid URL : All other routes will return a 400 Bad Request response with the message "Invalid URL."
+- GET /api/loan/allUser: Admin can get all loans for all users (requires authentication).
+
+### Invalid URL :
+All other routes will return a 400 Bad Request response with the message "Invalid URL."
 
 ### Middlewares
 - authMiddleware: Authentication middleware using JWT for protected routes.
@@ -65,8 +74,4 @@ The backend server provides the following API endpoints:
 - otpVerification.verifyOTP: Middleware for OTP verification.
 
 ## Usage
-This backend serves to build a frontend application that allows users to register, log in, apply for loans, approve loans, and manage loan repayments. I have Secure the frontend application by integrating JWT for user authentication and authorization.
-
-# FRONTEND
-
-FrontEnd Incoming
+This backend serves to build the Loan Repayment application frontend that allows users to register, log in, apply for loans, approve loans, and manage loan repayments. I have Secure the frontend application by integrating JWT for user authentication and authorization.
