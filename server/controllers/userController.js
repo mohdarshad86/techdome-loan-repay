@@ -23,7 +23,6 @@ const register = async (req, res) => {
     if (userExist) return res.status(400).send({ status: false, message: 'User Already exist, LogIn Please!' })
 
     req.body.password = password = await hashPassword(password);
-    console.log(req.body.password);
 
     const newUser = await userModel.create(data)
 
@@ -105,7 +104,7 @@ const getUser = async function (req, res) {
 
     return res.status(200).send({ status: true, data: userDetails });
   } catch (error) {
-    console.log("get User error", error.message);
+    console.log(error.message);
     return res.status(500).send({ status: false, msg: error.message });
   }
 };

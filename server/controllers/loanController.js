@@ -39,7 +39,7 @@ const createLoan = async (req, res) => {
 const getLoansByUser = async (req, res) => {
     try {
         const userId = req.user._id;
-        console.log('api', req.user);
+
         const loans = await loanModel.find({ userId: userId });
 
         return res.status(200).json(loans);
@@ -51,7 +51,6 @@ const getLoansByUser = async (req, res) => {
 
 const approveLoan = async (req, res) => {
     try {
-        console.log(req.user);
 
         if (req.user.role != "Admin") {
             return res.status(403).json({ message: 'Permission denied' });
@@ -86,7 +85,7 @@ const addRepayment = async (req, res) => {
         if (!loan) {
             return res.status(404).json({ message: 'Loan not found' });
         }
-        if (loan.status==='PAID') {
+        if (loan.status === 'PAID') {
             return res.status(400).json({ message: 'Loan Already Paid' });
         }
 
@@ -121,4 +120,14 @@ const addRepayment = async (req, res) => {
     }
 };
 
-module.exports = { createLoan, getLoansByUser, approveLoan, addRepayment }
+const getAllLoans = async (req, res) => {
+    try {
+        const loans = await loanModel.find().populate('userId');
+        return res.json(loans);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+module.exports = { createLoan, getLoansByUser, approveLoan, addRepayment, getAllLoans }
