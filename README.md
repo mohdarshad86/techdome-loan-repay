@@ -4,6 +4,14 @@ Clone the repository: To clone the repository run command in the terminal
 git clone https://github.com/mohdarshad86/techdome-loan-repay.git
 ```
 
+User can run the application using command 
+```bash
+npm run dev
+```
+This command will start both the frontend and backend simultaneously.
+
+For a detailed explanation of both the frontend and backend, please refer to the sections below.
+
 # BACKEND:
 
 Techdome Solution Assignment - Loan Repayment App.
