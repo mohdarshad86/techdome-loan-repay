@@ -19,6 +19,7 @@ import LoanForm from '../componets/LoanForm';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Payments from '../componets/Payments';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Profile = () => {
   const [loans, setLoans] = useState([])
@@ -35,8 +36,8 @@ const Profile = () => {
   }
 
   const getLoans = async () => {
-    // console.log(config);
-    const response = await axios.get('http://localhost:3001/api/loan/user', config);
+
+    const response = await axios.get(`${BASE_URL}/api/loan/user`, config);
     setLoans(response.data);
   }
 

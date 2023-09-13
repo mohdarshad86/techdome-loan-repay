@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const AdminPage = () => {
   const [allLoans, setAllLoans] = useState([]);
@@ -25,9 +26,8 @@ const AdminPage = () => {
   }
 
   const getAllUsers = async () => {
-    const response = await axios.get('http://localhost:3001/api/loan/allUser', config);
+    const response = await axios.get(`${BASE_URL}/api/loan/allUser`, config);
     setAllLoans(response.data);
-    console.log(response.data);
   }
 
   const updateLoan = (loanId) => {
@@ -95,8 +95,7 @@ const LoanDetails = ({ loan, userInfo, updateLoan }) => {
       },
     }
 
-    console.log(config);
-    const response = await axios.put(`http://localhost:3001/api/loan/approve/${loan._id}`, {}, config);
+    const response = await axios.put(`${BASE_URL}/api/loan/approve/${loan._id}`, {}, config);
 
     if (response) updateLoan(loan._id)
   }

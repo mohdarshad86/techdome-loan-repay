@@ -1,7 +1,8 @@
 import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, VStack, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from "react-router";
-import axios from 'axios'
+import axios from 'axios';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const SignUp = () => {
 
@@ -44,7 +45,7 @@ const SignUp = () => {
                     "Content-type": "application/json",
                 },
             };
-            const { data } = await axios.post("http://localhost:3001/api/user",
+            const { data } = await axios.post(`${BASE_URL}/api/user`,
                 {
                     name,
                     email,
@@ -62,7 +63,6 @@ const SignUp = () => {
             });
             localStorage.setItem("userInfo", JSON.stringify(data));
             nevigate("/profile");
-            window.location.reload();
         } catch (error) {
             toast({
                 title: "Error Occured!",
@@ -74,7 +74,6 @@ const SignUp = () => {
             });
         }
     };
-
 
     return <VStack spacing='5px'>
         <FormControl id='first-name' isRequired>

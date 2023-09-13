@@ -8,6 +8,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import axios from 'axios';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const LoanForm = ({ userInfo, closeLoanForm, addLoan }) => {
   const [amount, setAmount] = useState('');
@@ -33,9 +34,7 @@ const LoanForm = ({ userInfo, closeLoanForm, addLoan }) => {
       loanTerm: term
     }
 
-    const response = await axios.post('http://localhost:3001/api/loan/create', data, config);
-    // setLoans(response.data);
-    console.log(response.data);
+    const response = await axios.post(`${BASE_URL}/api/loan/create`, data, config);
     addLoan(response.data.loan)
     if (response) closeLoanForm();
     

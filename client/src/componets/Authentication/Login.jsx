@@ -2,6 +2,7 @@ import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, V
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Login = () => {
     const [show, setShow] = useState(false);
@@ -31,7 +32,7 @@ const Login = () => {
                 };
 
                 const { data } = await axios.post(
-                    "http://localhost:3001/api/user/sendOTP",
+                    `${BASE_URL}/api/user/sendOTP`,
                     { phone },
                     config
                 );
@@ -76,12 +77,11 @@ const Login = () => {
                 };
 
                 const { data } = await axios.post(
-                    "http://localhost:3001/api/user/verifyOTP",
+                    `${BASE_URL}/api/user/verifyOTP`,
                     { phone, enteredOTP: otp },
                     config
                 );
 
-                // console.log(JSON.stringify(data));
                 toast({
                     title: "Login Successful",
                     status: "success",
@@ -94,7 +94,6 @@ const Login = () => {
                 setLoading(false);
                 if (data.role === 'Admin') navigate('/admin')
                 else navigate("/profile");
-                // window.location.reload();
             } catch (error) {
                 toast({
                     title: "Error Occured!",
@@ -141,7 +140,7 @@ const Login = () => {
             };
 
             const { data } = await axios.post(
-                "http://localhost:3001/api/user/login",
+                `${BASE_URL}/api/user/login`,
                 { email, password },
                 config
             );
@@ -159,7 +158,6 @@ const Login = () => {
             setLoading(false);
             if (data.role === 'Admin') navigate('/admin')
             else navigate("/profile");
-            // window.location.reload();
         } catch (error) {
             toast({
                 title: "Error Occured!",

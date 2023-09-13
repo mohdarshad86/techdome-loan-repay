@@ -1,6 +1,7 @@
 import { Box, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text } from '@chakra-ui/react';
 import axios from 'axios';
 import React from 'react'
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Payment = ({ isRepaymentsModalOpen, closeRepaymentsModal, loan, userInfo, updateLoan }) => {
 
@@ -11,9 +12,8 @@ const Payment = ({ isRepaymentsModalOpen, closeRepaymentsModal, loan, userInfo, 
         },
       }
   
-      console.log(config);
-      const response = await axios.post(`http://localhost:3001/api/loan/repay/${loan._id}`, { amount: loan.amountRequired }, config);
-      console.log(response.data);
+      const response = await axios.post(`${BASE_URL}/api/loan/repay/${loan._id}`, { amount: loan.amountRequired }, config);
+      
       updateLoan(response.data.loan);
     }
   
