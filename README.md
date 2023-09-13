@@ -1,16 +1,22 @@
-Clone the repository: To clone the repository run command in the terminal
+DEPLOYED APPLICATION : Successfully deployed the application on netlify
+
+```bash
+https://lone-repayments.netlify.app/
+```
+
+Clone the repository: To clone the repository run below command in the terminal
 
 ```bash 
 git clone https://github.com/mohdarshad86/techdome-loan-repay.git
 ```
 
-User can run the application using command 
+User can run the application using command, it run both frontend and backend simultaneously. 
 ```bash
 npm run dev
 ```
 This command will start both the frontend and backend simultaneously.
 
-For a detailed explanation of both the frontend and backend, please refer to the sections below.
+For the detailed explanation to setup both the frontend and backend, please refer to the sections below.
 
 # BACKEND:
 
