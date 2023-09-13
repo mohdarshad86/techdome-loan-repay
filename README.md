@@ -10,7 +10,13 @@ Clone the repository: To clone the repository run below command in the terminal
 git clone https://github.com/mohdarshad86/techdome-loan-repay.git
 ```
 
-User can run the application using command, it run both frontend and backend simultaneously. 
+User can run the application using dev command, it run both frontend and backend simultaneously from main directory ( i.e. techdome-loan-repayment ).
+
+run command 
+```bash
+npm install
+```
+It will install `concurrently` and then run
 ```bash
 npm run dev
 ```
