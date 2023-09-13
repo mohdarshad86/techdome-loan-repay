@@ -1,0 +1,25 @@
+{
+  "name": "techdome-loan-repay",
+  "version": "1.0.0",
+  "description": "To run application Concurrently",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server":"cd server && npm start",
+    "client":"cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohdarshad86/techdome-loan-repay.git"
+  },
+  "author": "Mohd Arshad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohdarshad86/techdome-loan-repay/issues"
+  },
+  "homepage": "https://github.com/mohdarshad86/techdome-loan-repay#readme",
+  "dependencies": {
+    "concurrently": "^8.2.1"
+  }
+}
