@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "47730ba6-9ef3-441d-886b-aa48243f87ad",
+		"name": "Techdome-LoneRepay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24845987"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "regiser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Jane Doe\",\r\n  \"phone\": \"6897669593\",\r\n  \"email\": \"janedoe1@mailinator.com\", \r\n  \"password\": \"abcd123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"abc123\",\r\n    \"email\":\"janedoe1@mailinator.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loginOTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\":\"8881821692\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/user/sendOTP",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"user",
+								"sendOTP"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetchUser",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "fetchAllUsers",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loan",
+			"item": [
+				{
+					"name": "createLoan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZmMzY1NDJhN2U2YTYyODhmYmJiODgiLCJyb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE2OTQ0NDg0Mzd9.75_tI0W0Jay90dE14TFbYt3lt7VBVc3nCne7PwJ17xA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"amountRequired\": 10000,\r\n  \"loanTerm\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/loan/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"loan",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loanApprove",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MDAwMWVkYjgzMDM0MGM5NWJjMmU1NiIsImlhdCI6MTY5NDUwMDQzNywiZXhwIjoxNjk3MDkyNDM3fQ.kqvD1lXkM55uohdb6RQ5OLmrQDY3Om8bVX97BOPTM-w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/api/loan/approve/65000133b830340c95bc2e50",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"loan",
+								"approve",
+								"65000133b830340c95bc2e50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loanRepay",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MDAwMWVkYjgzMDM0MGM5NWJjMmU1NiIsImlhdCI6MTY5NDUwMDQzNywiZXhwIjoxNjk3MDkyNDM3fQ.kqvD1lXkM55uohdb6RQ5OLmrQDY3Om8bVX97BOPTM-w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"amount\": 3333.33\r\n}"
+						},
+						"url": {
+							"raw": "localhost:3001/api/loan/repay/65000133b830340c95bc2e50",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"loan",
+								"repay",
+								"65000133b830340c95bc2e50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetchLoan",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "fetchAllUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MDAzM2MzMGI5YmZkMmFhYjJmNDRhYiIsImlhdCI6MTY5NDUxMzYyMiwiZXhwIjoxNjk3MTA1NjIyfQ.IsqIsbpHmOqirS3383ZoqtPqJrH15PVw70vznElKT_c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/api/loan/allUser",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"loan",
+								"allUser"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
