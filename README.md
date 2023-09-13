@@ -1,3 +1,8 @@
+Admin Login Details:
+
+Email : techdome@gmail.com
+Password : techdome123
+
 DEPLOYED APPLICATION : Successfully deployed the application on netlify
 
 ```bash
